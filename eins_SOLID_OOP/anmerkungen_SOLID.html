@@ -1,13 +1,11 @@
 <html>
 <head>
-	<h5>SOLID</h5>
+	<h1>SOLID</h1>
 </head>
 
 <body>
 	<div>
-		<title>
-			PRINCIPIOS DA ORIENTAÇÃO A OBJETOS
-		</title>
+		<h3>PRINCIPIOS DA ORIENTAÇÃO A OBJETOS</h3>
 		<ul>
 			<li>1 - COESÃO</li>
 			<li>2 - ENCAPSULAMENTO</li>
@@ -18,31 +16,41 @@
 		<p>2 - O encapsulamento diz respeito à proteção/blindagem de algum elemento contra influências e manipulações externas, que podem prejudicar a consistência das informações desse elemento. <br>
 		Para um bom encapsulamento, não basta colocar os atributos de uma classe como private e gerar seus getters e setters. Podem existir regras de negócio associadas a algum atributo que serão quebradas caso não haja encapsulamento correto das validações, lembrando que um setter permite que haja a manipulação direta de atributos.</p>
 		<p>3 - O acoplamento diz respeito ao agrupamento entre elementos, isto é, a dependência que um elemento possui em relação ao outro. </p>
-	</div>
+	<hr>
 	
-	<div>
-		<title>
-			S - SINGLE RESPONSABILITY PRINCIPLE
-		</title>
-		<p>O princípio de responsabilidade única se refere à boa coesão de uma classe, ou seja, uma classe deve ter apenas uma responsabilidade e apenas um motivo para mudar.<br>
-		
-		<i>"só porque você pode, não significa que você deveria"</i><br>
-		</p>
-		
-		<title>
-			O - OPEN-CLOSED PRINCIPLE
-		</title>
-		<p>O princípio de aberto-fechado se refere à redução do acoplamento de uma classe, isto é, tornar a classe mais extensível, flexível e sem 'crescimento infinito' cada vez que um requisito é solicitado. Resumidamente: as entidades devem estar abertas para extensão (adição de novos comportamentos) e fechadas para modificação.
-		<br>
-		
-		<i>"uma cirurgia de peito aberto não é necessária quando se coloca um casaco"</i><br>
-		</p>
-		
-		
-	</div>
+	<h3>S - SINGLE RESPONSABILITY PRINCIPLE</h3>
+	<p>O princípio de responsabilidade única se refere à boa coesão de uma classe, ou seja, uma classe deve ter apenas uma responsabilidade e apenas um motivo para mudar.<br>
 	
+	<blockquote>"só porque você pode, não significa que você deveria"</blockquote>
+	</p>
 	
-
+	<h3>O - OPEN-CLOSED PRINCIPLE</h3>
+	<p>O princípio de aberto-fechado se refere à redução do acoplamento de uma classe, isto é, tornar a classe mais extensível, flexível e sem 'crescimento infinito' cada vez que um requisito é solicitado. Resumidamente: as entidades devem estar abertas para extensão (adição de novos comportamentos) e fechadas para modificação.
+	<br>
+	
+	<blockquote>"uma cirurgia de peito aberto não é necessária quando se coloca um casaco"</blockquote>
+	</p>
+	
+	<h3>L - LISKOV SUBSTITUTION PRINCIPLE</h3>
+	<p>O princípio da substituição de Liskov se refere ao uso incorreto da herança para reaproveitamento de recursos quando, na realidade, a classe filha não deveria estender todos os comportamentos da classe pai. Um modo de evitar essa possível inconsistência no código é o uso de composição para agrupar os recursos necessários e os prover para as classes quando necessário.
+	<br>
+	
+	<blockquote>"se algo se parece com um pato, faz quack como um pato, mas precisa de baterias para funcionar, você provavelmente está usando a abstração errada"</blockquote>
+	</p>
+	
+	<h3>I - INTERFACE SEGREGATION PRINCIPLE</h3>
+	<p>O princípio de segregação de interface se refere ao conceito de que uma classe não deve ser forçada a depender de métodos que não usa só porque implementa uma interface que define esses métodos além dos que a classe necessita.
+	<br>
+	
+	<blockquote>"quando um objeto possui diversas interfaces de uso, pode ser confuso saber em qual delas a nossa necessidade de uso se encaixa"</blockquote>
+	</p>
+	
+	<h3>D - DEPENDENCY INVERSION PRINCIPLE</h3>
+	<p>O princípio de inversão de dependência se refere ao conceito de que as implementações concretas devem depender de abstrações, não o contrário. As abstrações são contratos que representam conceitos e entidades, cuja implementação concreta é feita por quem implementa o contrato.
+	<br>
+	
+	<blockquote>"quando você quer ligar uma lâmpada, você não solda um fio diretamente na tomada, você utiliza um bocal que 'abstrai' essa solda."</blockquote>
+	</p>
 
 </body>
 </html>
