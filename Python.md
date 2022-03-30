@@ -78,7 +78,7 @@ The following packages can help with the creation of console and GUI executables
 >>
 >> Here is an example Python module which we want to import. This module calculates factorials.  
 >>
->> ```python
+```python
 # math_helpers.py
 
 # a function that computes the nth factorial, e.g. factorial(2)
