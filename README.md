@@ -1,3 +1,9 @@
-# anmerkungen_und_studien
+### Tópicos relacionados a engenharia de software
 
--> eins - SOLID e OOP
+- SOLID
+- Arquitetura Hexagonal
+- Observability
+- Programação:
+    - Orientada a objetos
+    - Orientada a eventos
+    - Funcional
