@@ -1,4 +1,21 @@
-# Python FAQ
+# Python
+
+## Definition
+
+Python is a high-level **interpreted** programming language that supports multiple programming paradigms: imperative, object-oriented, and functional. It is a dynamically typed language with automatic memory management.  
+
+> Brief concepts
+> - Interpreted Language: the implementation of the python language on each computer is done through a process in which one of the main components is the interpreter (Python Virtual Machine).
+> - Supports Multiple Programming Paradigms:  
+>    - Imperative or Procedural: Instructions are passed to the computer in the sequence they are to be executed.  
+>    - Object Oriented: It uses structures called classes and objects and its main feature is to allow cross-platform programming.  
+>    - Functional: Its main characteristic is the use of structures called functions . These functions separate code into blocks that each have a specific task.  
+> - Dynamic Typing: the program itself “understands” what type of data is being used and therefore its type does not need to be previously declared.
+> - Automatic Memory Management: Python constantly maintains or “cleans” unused memory through mechanisms such as the garbage collector and Reference Counting . That way, the programmer doesn't have to worry about manually managing memory.  
+
+## PEP-8 and The Zen of Python
+
+PEP-8 (Python Enhancement Proposals) is a style and code structuration guide 
 
 ## How do I run a Python program under Windows?
 
