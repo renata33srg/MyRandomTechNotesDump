@@ -1,4 +1,7 @@
-# Observability Tools
+# Metrics and Observability Tools
+
+Metrics are numeric measurements that show how systems and applications behave in a certain way. When it's said that metrics are time-series based, it means that changes are recorded over time and can show specificities that might compromise availability and resilience.  
+
 
 - [Prometheus](#prometheus)
 - [Grafana](#grafana)
@@ -17,6 +20,8 @@ Prometheus is an open-source systems monitoring and alerting toolkit that collec
 - [pushing time series](#pushingtimeseries) is supported via an intermediary gateway
 - targets are discovered via service discovery or static configuration
 - multiple modes of graphing and dashboarding support  
+
+
 
 ---
 
@@ -59,10 +64,11 @@ Notes of main features
 <details>
 <summary>Querying <a name="querylanguage"></a></summary>	
 
-> 
-
+> PromQL stands for **Prometheus Query Language**, that is a specific form to let users select and aggregate time series data in real time. The result of an expression can either be shown as a graph, viewed as tabular data in Prometheus's expression browser, or consumed by external systems via the [HTTP API](https://prometheus.io/docs/prometheus/latest/querying/api/).   
+> Examples of queries can be found [here](https://prometheus.io/docs/prometheus/latest/querying/examples/).  
+>
+	
 </details>
-
 	
 <details>
 <summary>Pushing Time Series <a name="pushingtimeseries"></a></summary>	
@@ -86,10 +92,9 @@ Notes of main features
 > **Alternative strategies**  
 > If an inbound firewall or NAT is preventing you from pulling metrics from targets, consider moving the Prometheus server behind the network barrier as well. We generally recommend running Prometheus servers on the same network as the monitored instances. Otherwise, consider PushProx, which allows Prometheus to traverse a firewall or NAT.  
 > For batch jobs that are related to a machine (such as automatic security update cronjobs or configuration management client runs), **expose the resulting metrics using the Node Exporter's textfile collector** instead of the Pushgateway.   
-> For more information on using the Pushgateway and use from a Unix shell, see the project's [README.md](https://github.com/prometheus/pushgateway/blob/master/README.md).  
-> For use from Java see the [PushGateway](https://prometheus.github.io/client_java/io/prometheus/client/exporter/PushGateway.html) class.
-> For use from Go see the Push and Add methods.
 >
+> For more information on using the Pushgateway and use from a Unix shell, see the project's [README.md](https://github.com/prometheus/pushgateway/blob/master/README.md).  
+> For use from Java see the [PushGateway](https://prometheus.github.io/client_java/io/prometheus/client/exporter/PushGateway.html) class.  
 > For use from Python see Exporting to a [Pushgateway](https://github.com/prometheus/client_python#exporting-to-a-pushgateway).
 >
 	
