@@ -1,4 +1,9 @@
-# anmerkungen_und_studien
+### TÃ³picos relacionados a engenharia de software
 
--> eins - SOLID e OOP
--> zwei - Design Patterns
+- SOLID
+- Arquitetura Hexagonal
+- Observability
+- Programação:
+    - Orientada a objetos
+    - Orientada a eventos
+    - Funcional
