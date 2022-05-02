@@ -9,20 +9,20 @@
 3. [How do I make Python scripts executable?](#how-do-i-make-python-scripts-executable)  
 4. [How do I make an executable from a Python script?](#how-do-i-make-an-executable-from-a-python-script)  
 5. [Language Semantic Concepts](#language-semantic-concepts)  
-5.1 [Expressions](#expressions)  
-5.2 [Statements](#statements)  
-5.3 [Containers](#containers)  
-5.4 [Sequence](#sequence)  
-5.5 [Mapping](#mapping)  
-5.6 [Magic Methods](#magic-methods)  
+5.1. [Expressions](#expressions)  
+5.2. [Statements](#statements)  
+5.3. [Containers](#containers)  
+5.4. [Sequence](#sequence)  
+5.5. [Mapping](#mapping)  
+5.6. [Magic Methods](#magic-methods)  
 6. [Unit Tests](#unit-tests)  
-6.1 [Writing Tests](#writing-tests)  
+6.1. [Writing Tests](#writing-tests)  
 6.2. [Throwing Exceptions](#throwing-exceptions)  
 6.3. [Asserting Values](#asserting-values)  
 6.4. [Running Tests](#running-tests)  
 6.5. [Environment](#environment)  
 6.6. [Mocking Objects](#mocking-objects)  
-6.6.1. [Mocking Class](#mock-class)  
+6.6.1. [Mock Class](#mock-class)  
 
   
 ---
@@ -187,7 +187,9 @@ The following packages can help with the creation of console and GUI executables
 | [cx_Freeze](https://marcelotduarte.github.io/cx_Freeze/) | (Cross-platform) |  
 | [py2app](https://github.com/ronaldoussoren/py2app) | (macOS only) |  
 | [py2exe](http://www.py2exe.org/) | (Windows only) |  
-
+  
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+  
 ---
 
 ## Language Semantic Concepts  
@@ -227,6 +229,8 @@ Represents finite sets of objects indexed by arbitrary index sets. Main features
   
 ### Magic Methods
 Are methods that are not directly invoked by the programmer when writing a code. They are system calls that are invoked on the back end automatically. The difference between magic and normal methods is that double underscores surround magic methods. That is why they are also called dunder methods. Dunder here means double underscores. *Magic methods are also used for operator overloading*. Example: The use of \_\__getitem\_\__() in a class allows the instances of a class to use the indexer operator [ ] with the reference variables of a class for accessing the value of a list, dictionary, or tuple from a specific index.  
+
+<p align="right"> <a href="#index">Return to Index</a> </p>  
 
 ---
 
@@ -274,7 +278,9 @@ if __name__ == "__main__":
 unittest.main()
 ```
 The assertTrue method defines that the return of nova_compra.frete_gratis(200) must be True otherwise the test fails. In this case, it will return True because 200 is greather than 150 (what it's being compared inside the method).  
-
+  
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+  
 ### Throwing exceptions
 
 In certain situations it's necessary to know if a unit will generate an error, or an Exception. For this kind of situation, *PyUnit* has a specific method called **assertRaises()** that determines whether the code being tested should throw an exception and what type of exception it should throw. The assertRaises method has the following syntax:  
@@ -294,6 +300,8 @@ def test_frete_gratis_exception(self):
 ```
 
 If the unit tested with assertRaises does not throw an exception the test will fail. The method receives and compares an integer, not a string.  
+  
+<p align="right"> <a href="#index">Return to Index</a> </p>  
   
 ### Asserting values
   
@@ -317,6 +325,8 @@ unittest.main()
 ```
 In this case, the value 100 is lower than 150, so the comparison in the method will return False and the assert in test case will fail.  
 
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+
 ### Running Tests
 
 To run the tests just run the file in the terminal with the python command: `python classe_de_teste..py`  
@@ -331,7 +341,9 @@ Then the command line terminal will give a response similar to the following if 
         OK
 ```
 In the example above PyUnit is indicating that two tests were run and no errors were found.  
-
+  
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+  
 ### Environment
 In many situations it is necessary to reuse instances in more than one test within a test class. The test environment consists of the objects that will be used in all tests of the test class.  
 *PyUnit* has the following tools for assembling and disassembling test environments:  
@@ -391,7 +403,9 @@ class AnalizadorTest(unittest.TestCase):
 ```
 
 In this way, if any subsequent test uses the same log class, the data stored during the execution of this test will not cast doubt on its result.  
-
+  
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+  
 ### Mocking objects
 
 To validate a model to be persisted, it's possible to use a mock object to replace the persistence class, which in this case is necessary for the completion of the action, but still indirectly important. That way, the focus is on validation and exempt test code from connection errors, among others.  
@@ -450,7 +464,9 @@ class FolhaPagamentoTeste(unittest.TestCase):
 > The patch decorator makes it easy to create mock classes or objects in the module under test. The attribute in question (except a method's self ) will be replaced by a mock during the test and restored after the test is finished.  
 >  
 
-#### Mock class
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+
+##### Mock class
 Mock is a flexible object designed to replace the use of sketches and test doubles in code. A Mock can be called and create attributes as new mocks when accessed. Accessing the same attributes will always return the same mocks. Mocks record how they are used, allowing assertions to be made about interacting with your code.  
 
 ```python
@@ -507,6 +523,8 @@ Arguments
   Defines a name for the mock that will be used as your __repr__ . The name propagates in child mocks.  
 </details>
 
+<p align="right"> <a href="#index">Return to Index</a> </p>  
+
 #### Mocking magic methods
 
 Mock allows the mockup of Python's magic methods. This allows mock objects to replace objects that implement Python protocols. As magic methods are seen differently from other methods, this functionality was specifically implemented. So not all magic methods are supported, although the list includes most of them.  
@@ -546,6 +564,8 @@ def test_stringficador(self):
 
 Magic method calls do not appear in method_calls but appear in mock_calls.  
 Note : If the spec keyword was used in the Mock creation as an argument then defining a magic method that is not in the spec will result in an AttributeError error.  
+
+<p align="right"> <a href="#index">Return to Index</a> </p> 
 
 ---
 
