@@ -109,7 +109,7 @@ Todo módulo do Terraform deve, obrigatoriamente, definir um bloco de **required
 > }
 >
 > data "http" "example" {
->  **provider = hashicorp-http**
+>  provider = hashicorp-http
 >  #...
 > }
 >
@@ -119,9 +119,32 @@ Todo módulo do Terraform deve, obrigatoriamente, definir um bloco de **required
   
 No bloco **provider** é onde se configura o nome local do provedor do recurso criado, isto é, quem é responsável por criar e gerenciar os recursos. O **provider** é um plugin que o Terraform usa para "traduzir" as interações da API com o serviço, sendo responsável por entender as interações e expor recursos.  
 Pela versatilidade em interagir com quaisquer API's, é possível representar praticamente todo tipo de infraestrutura ou serviço como um recurso no Terraform. Por isso, é possível configurar múltiplos blocos de **provider** para utilizar recursos de provedores diferentes na mesma pipeline.  
-Para configurar o **provider**, é necessário informar alguns parâmetros:  
+Para configurar a AWS como **provider**, é necessário informar alguns parâmetros:  
 - O *profile* é um atributo que define quais são as credenciais que serão usadas para a interação com o **provider**. No caso da AWS, o profile 'default' usa as credenciais armazenadas no arquivo %USERPROFILE%/.aws/credentials (criado no momento da configuração do CLI em caso de operações locais), ou usa as credenciais IAM do perfil da instância (em caso de operações na AWS).  
 - A *region* é um atributo que define de/em qual região serão feitas as operações nos recursos.  
+
+>
+> Para utilizar o mesmo provider com configurações diferentes (com especificidades para cada recurso), é possível utilizar um meta-argumento opcional chamado *alias*. > 
+> Exemplo:  
+> ```ruby
+> # The default provider configuration; resources that begin with `aws_` will use it as the default, and it can be referenced as `aws`.
+> provider "aws" {
+>  region = "us-east-1"
+> }
+>  
+> # Additional provider configuration for west coast region; resources can reference this as `aws.west`.
+> provider "aws" {
+>  alias  = "west"
+>  region = "us-west-2"
+> }
+>  
+>  
+> resource "aws_instance" "foo" {
+>  provider = aws.west
+>  # ...
+> }
+>
+> ```
   
 No bloco **resource** é onde se define o tipo de recurso que se deseja criar e qual será o seu nome de referência. O **resource** pode ser qualquer componente de infraestrutura (físico ou lógico) oferecido pelo provider e suportado pelo Terraform.  
 No primeiro exemplo do bloco acima, o tipo de recurso é uma instância aws (aws_instance) cujo nome será "exemplo-ec2". O prefixo contido no tipo do recurso é um mapeamento para o provider que criará o recurso (o tipo aws_instance informa ao Terraform que o provider usado é o "aws").  
@@ -136,17 +159,22 @@ Nesta mesma página, em *Browse Modules*, é possível encontrar módulos pronto
 
 ---
 
-## Etapas da criação do recurso com Terraform
+## Ciclo de gerenciamento de recurso (básico)  
+  
+Para realizar o gerenciamento de recursos, a pipeline segue alguns passos para comparar o estado atual das configurações/variáveis da infraestrutura e determinar quais alterações são necessárias para que o estado atual corresponda ao estado desejado (alterações feitas no template).  
+  
+   *terraform plan*   
+>    - Lê o estado atual de quaisquer objetos pré-existentes no Terraform para garantir que o plano está atualizado (não está `stale`);  
+>    - Compara a configuração atual no template com o estado prévio dos recursos, registrando qualquer diferença encontrada;  
+>    - Propõe um conjunto de alterações que, se aplicadas, farão que os recursos correspondam à configuração sugerida.  
+>      
+>   Esse comando sozinho não aplicará as alterações propostas, servindo somente para checar se o que foi alterado corresponde ao que era esperado.  
+>   Se o Terraform detectar que não há necessidade de alterações nos recursos ou valores de saída, o comando reportará que nenhuma ação precisa ser tomada.   
+>   
+  
+   *terraform apply*   
+>    - Executa as alterações propostas no plano criado no comando `terraform plan` (se não existir nenhum plano criado/salvo, o apply cria o seu próprio plano).  
+>    - Dependendo da forma como está configurado, pode pedir aprovação manual do usuário.  
 
-*terraform plan*  
-- 
-One of the stages of a run, in which Terraform compares the managed infrastructure's real state to the configuration and variables, determines which changes are necessary to make the real state match the desired state, and presents a human-readable summary to the user. The counterpart of an apply.
-
-In Terraform's CLI, plans are performed by all of the following commands:
-
-terraform plan, which only performs a plan. It can optionally output a plan file, which terraform apply can use to perform that exact set of planned changes.
-terraform apply, which performs a plan and then, if a user approves, immediately applies it.
-terraform destroy, which is similar to terraform apply but uses a desired state in which none of the managed resources exist; if the plan is approved, those resources are destroyed.
-In Terraform Cloud, plans are performed by committing changes to a workspace's configuration, running terraform plan or terraform apply with the remote backend enabled, manually queueing a plan, or uploading a configuration via the API.
-
-Terraform Cloud's workflow always creates a plan file, which can be auto-applied or can wait for a user's approval. Terraform Cloud also supports speculative plans, which are for informational purposes only and cannot be applied.
+   *terraform destroy* (opcional)  
+>    - Faz a exclusão de recursos temporários criados para fins de desenvolvimento (ephemeral infrastructure).   
